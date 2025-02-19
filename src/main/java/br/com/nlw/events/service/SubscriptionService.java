@@ -40,7 +40,7 @@ public class SubscriptionService {
         if (userId != null) {
             indicador = userRepository.findById(userId).orElse(null);
             if (indicador == null) {
-                throw new UserIndicadorNotFoundException("Usuário indicador com ID: " + userId + " não existe");
+                throw new UserIndicadorNotFoundException("Usuário indicador com ID " + userId + " não existe");
             }
         }
 

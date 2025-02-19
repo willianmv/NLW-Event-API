@@ -1,4 +1,6 @@
 package br.com.nlw.events.dto;
 
-public record ErrorMessage(String message) {
+import java.util.List;
+
+public record ErrorMessage(Integer statusCode, String message, List<ErroCampo>errorsList) {
 }

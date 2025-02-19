@@ -2,6 +2,7 @@ package br.com.nlw.events.controller;
 
 import br.com.nlw.events.model.Event;
 import br.com.nlw.events.service.EventService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class EventController {
     private EventService eventService;
 
     @PostMapping
-    public Event addNewEvent(@RequestBody Event newEvent){
+    public Event addNewEvent(@RequestBody @Valid Event newEvent){
         return eventService.addNewEvent(newEvent);
     }
 

@@ -7,4 +7,6 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     public Event findByPrettyName(String prettyName);
 
+    public boolean existsByTitle(String title);
+
 }
