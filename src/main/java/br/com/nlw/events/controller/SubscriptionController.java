@@ -33,4 +33,10 @@ public class SubscriptionController {
         return ResponseEntity.ok(subscriptionService.getCompleteRanking(prettyName));
     }
 
+    @GetMapping("/{prettyName}/ranking/{userId}")
+    public  ResponseEntity<?> generateRankingByEventAndUser(@PathVariable("prettyName") String prettyName,
+                                                            @PathVariable("userId") Integer userId){
+        return ResponseEntity.ok(subscriptionService.getRankingByUser(prettyName, userId));
+    }
+
 }
