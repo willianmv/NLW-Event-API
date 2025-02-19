@@ -1,6 +1,10 @@
 package br.com.nlw.events.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tbl_user")
@@ -11,10 +15,15 @@ public class User {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "user_name", length = 255, nullable = false)
+    @NotBlank(message = "Nome é obrigatório")
+    @Size(min = 2, max = 70, message = "Nome deve ter entre 2 e 70 caracteres")
+    @Column(name = "user_name", nullable = false)
     private String name;
 
-    @Column(name = "user_email", length = 255, nullable = false, unique = true)
+    @NotBlank(message = "Email é obrigatório.")
+    @Email(message = "Email inválido.")
+    @Size(max = 255, message = "Email não pode ter mais de 255 caracteres.")
+    @Column(name = "user_email", nullable = false, unique = true)
     private String email;
 
     public Integer getUserId() {

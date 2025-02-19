@@ -1,6 +1,10 @@
 package br.com.nlw.events.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,21 +18,29 @@ public class Event {
     @Column(name = "event_id")
     private Integer eventId;
 
-    @Column(name = "title", length = 255, nullable = false)
+    @NotBlank(message = "Título do evento é obrigatório.")
+    @Size(min = 2, max = 255, message = "Título do evento deve ter entre 2 e 255 caracteres.")
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "pretty_name", nullable = false, unique = true)
     private String prettyName;
 
-    @Column(name = "location", length = 255, nullable = false)
+    @NotBlank(message = "Local do evento é obrigatório.")
+    @Size(min = 2, max = 255, message = "Local do evento deve ter entre 2 e 255 caracteres.")
+    @Column(name = "location", nullable = false)
     private String location;
 
     @Column(name = "price", nullable = false)
     private Double price;
 
+    @NotNull(message = "Data obrigatória")
+    @Future(message = "A data de início deve ser uma data futura")
     @Column(name = "start_date")
     private LocalDate startDate;
 
+    @NotNull(message = "Data obrigatória")
+    @Future(message = "A data de fim deve ser uma data futura")
     @Column(name = "end_date")
     private LocalDate endDate;
 

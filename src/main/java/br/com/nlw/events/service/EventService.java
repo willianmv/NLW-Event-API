@@ -1,5 +1,6 @@
 package br.com.nlw.events.service;
 
+import br.com.nlw.events.exception.DuplicateDataExcption;
 import br.com.nlw.events.model.Event;
 import br.com.nlw.events.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class EventService {
     private EventRepository eventRepository;
 
     public Event addNewEvent(Event event){
+        if(eventRepository.existsByTitle(event.getTitle())){
+            throw new DuplicateDataExcption("Já existe um evento com esse título: "+event.getTitle());
+        }
         event.setPrettyName(event.getTitle().toLowerCase().replace(" ", "-"));
         return eventRepository.save(event);
     }
